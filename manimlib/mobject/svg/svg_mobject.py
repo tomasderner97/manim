@@ -1,4 +1,5 @@
 import itertools as it
+import os
 import re
 import string
 import warnings
@@ -47,7 +48,7 @@ class SVGMobject(VMobject):
             self.ensure_valid_file()
         except IOError:
             warnings.warn(f"No svg {self.file_name}, falling back to default")
-            self.file_name = os.path.join(FILE_DIR, "default_svg.svg")
+            self.file_path = os.path.join(FILE_DIR, "default_svg.svg")
 
         VMobject.__init__(self, **kwargs)
         self.move_into_position()

@@ -2,6 +2,7 @@ MEDIA_DIR: str = None
 VIDEO_DIR: str = None
 VIDEO_OUTPUT_DIR: str = None
 TEX_DIR: str = None
+FILE_DIR: str = None
 
 
 def initialize_directories(config): ...

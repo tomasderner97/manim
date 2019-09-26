@@ -1313,7 +1313,7 @@ class WindmillScene(Scene):
 
     def handle_pivot_change(self, windmill, new_pivot):
         windmill.pivot = new_pivot
-        self.add_sound(self.hit_sound)
+        # self.add_sound(self.hit_sound)
         if self.leave_shadows:
             new_shadow = windmill.copy()
             new_shadow.fade(0.5)
@@ -1582,7 +1582,7 @@ class IntroduceWindmill(WindmillScene):
             ],
             VFadeOut(l_label),
         )
-        self.add_sound(self.hit_sound)
+        # self.add_sound(self.hit_sound)
         self.play(
             self.get_hit_flash(next_pivot)
         )
@@ -1613,7 +1613,7 @@ class IntroduceWindmill(WindmillScene):
         self.wait()
         flashes, run_time = self.rotate_to_next_pivot(windmill)
         self.remove(q_label)
-        self.add_sound(self.hit_sound)
+        # self.add_sound(self.hit_sound)
         self.play(*flashes)
         self.wait()
         self.let_windmill_run(windmill, 10)
@@ -1808,7 +1808,7 @@ class SpiritOfIMO(PiCreatureScene):
                 inner_radius=r1,
                 outer_radius=r2,
                 arc_center=point,
-                fill_opacity=(1 / (r1 + 1)**2),
+                fill_opacity=(1 / (r1 + 1) ** 2),
                 fill_color=YELLOW,
             )
             for r1, r2 in zip(radii[1:], radii[2:])
@@ -2075,6 +2075,7 @@ class PerfectScoreData(Describe2011IMO):
             else:
                 alpha = 2 * (frac - 0.5)
                 bar.set_color(interpolate_color(GREEN, BLUE, alpha))
+
         bar.add_updater(update_bar_color)
         return bar
 
@@ -3007,6 +3008,7 @@ class Rotate180Argument(WindmillScene):
 
         def update_pivot(w):
             w.pivot = pivot_tracker.get_center()
+
         windmill.add_updater(update_pivot)
 
         for x in range(4):
@@ -3620,7 +3622,7 @@ class LorenzTransform(Scene):
             grid.apply_matrix, np.array([
                 [1, beta],
                 [beta, 1],
-            ]) / (1 - beta**2),
+            ]) / (1 - beta ** 2),
             run_time=2
         )
         self.wait()
@@ -4106,6 +4108,8 @@ class Thumbnail(WindmillScene):
                 run_time=3,
             )
 
+        self.wait()
+
 
 class ThumbanailAnimated(Thumbnail):
     CONFIG = {
@@ -4132,3 +4136,11 @@ class Thumbnail2(Scene):
         self.add(rect)
         self.add(words)
         self.add(logo)
+
+        self.wait()
+
+
+if __name__ == '__main__':
+    from customutils2.manimutils.make_scene import make_scene
+
+    make_scene(Thumbnail2)
